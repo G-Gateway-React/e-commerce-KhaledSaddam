@@ -3,19 +3,24 @@ import { ListItem, NavLinks, NavStyled } from "./NavStyled";
 import { HiSearch } from "react-icons/hi";
 import { BiHeart } from "react-icons/bi";
 import { Box } from "@mui/material";
-
-const Nav = () => {
+import { StyledLink } from "../styles/linkStyles/StyledLink";
+export interface INav {
+  isHome: boolean;
+}
+const Nav: React.FC<INav> = ({ isHome }) => {
   return (
-    <NavStyled>
+    <NavStyled isHome={isHome}>
       <NavLinks>
         <Box>
           <ListItem>NEW ARRIVALS</ListItem>
           <ListItem>SHOP</ListItem>
           <ListItem>COLLECTIONS</ListItem>
         </Box>
-        <Box sx={{ fontSize: "2rem", fontWeight: "bold" }}>
-          <span style={{ color: "#D1094B" }}>S</span>hoOp
-        </Box>
+        <StyledLink to="/">
+          <Box sx={{ fontSize: "2rem", fontWeight: "bold" }}>
+            <span style={{ color: "#D1094B" }}>S</span>hoOp
+          </Box>
+        </StyledLink>
         <Box>
           <ListItem>
             <HiSearch
@@ -26,7 +31,9 @@ const Nav = () => {
             />
             SEARCH
           </ListItem>
-          <ListItem>SIGN IN</ListItem>
+          <ListItem>
+            <StyledLink to={"/signin"}>SIGN IN</StyledLink>
+          </ListItem>
           <ListItem>BAG (2)</ListItem>
           <ListItem>
             <BiHeart />
