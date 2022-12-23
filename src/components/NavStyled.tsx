@@ -1,16 +1,20 @@
 import styled from "styled-components";
-
-export const NavStyled = styled.nav`
+import { INav } from "./Nav";
+export const NavStyled = styled.nav<INav>`
   z-index: 1;
   overflow: hidden;
-  position: absolute;
+  margin-bottom: 2rem;
+  position: ${(props) => props.isHome && "absolute"};
   top: 0;
   width: 100%;
   height: 80px;
-  color: #fff;
+  color: ${(props) => props.isHome && "#fff"};
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 850px) {
+    display: none;
+  }
 `;
 
 export const NavLinks = styled.ul`
@@ -34,4 +38,15 @@ export const NavLinks = styled.ul`
 export const ListItem = styled.li`
   display: flex;
   align-items: center;
+`;
+
+export const LogoWhite = styled.img`
+  margin: 10px;
+  max-width: 180px;
+  height: auto;
+`;
+export const LogoBlack = styled.img`
+  margin: 10px;
+  max-width: 180px;
+  height: auto;
 `;

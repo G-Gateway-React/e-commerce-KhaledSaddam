@@ -41,6 +41,7 @@ export const FlexRow = styled(FlexBox)`
 
 export const FlexColumn = styled(FlexBox)`
   flex-direction: column;
+  align-items: flex-start;
 `;
 
 export const InnerSection = styled(FlexColumn)`

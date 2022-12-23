@@ -1,7 +1,7 @@
-import React, { createContext, PropsWithChildren, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { API_URL } from "../components/apiRequest";
-import { IUserInfo } from "../pages/SignUp";
+import React, { createContext, PropsWithChildren, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../components/apiRequest';
+import { IUserInfo } from '../pages/SignUp';
 
 interface IContextType {
   authed: boolean;
@@ -19,31 +19,31 @@ const UserContext: React.FC<PropsWithChildren> = ({ children }) => {
     email: FormDataEntryValue | null,
     password: FormDataEntryValue | null
   ) => {
-    console.log("object");
+    console.log('object');
     try {
       const res = await fetch(API_URL);
-      if (!res.ok) throw Error("Did not received exected data!");
+      if (!res.ok) throw Error('Did not received exected data!');
       const listUsers = await res.json();
       setUsers(listUsers);
 
       const isAvailable = users.find(
-        (user) => user.email === email && user.password === password
+        user => user.email === email && user.password === password
       );
       if (isAvailable) {
         setAuthed(true);
-        navigate("/dashboard");
+        navigate('/dashboard');
         setUsers(listUsers);
       } else {
         setAuthed(false);
       }
     } catch (error) {
-      console.log("error not handler");
+      console.log('error not handler');
     }
   };
 
   const handleLogout = () => {
     setAuthed(false);
-    navigate("/signin");
+    navigate('/signin');
   };
   return (
     <userContext.Provider value={{ authed, handleLogin, handleLogout }}>

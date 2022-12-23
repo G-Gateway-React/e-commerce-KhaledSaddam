@@ -1,39 +1,55 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import React from "react";
 import { FlexColumn, FlexRow } from "./GlobalStyles";
-import { SlimTypography } from "../styles/fontStyles/SlimTypography";
+import { SlimTypography } from "../styles/fontStyles/TypographyStyles";
 import { AiFillFacebook } from "react-icons/ai";
 import { FiInstagram } from "react-icons/fi";
+import styled from "styled-components";
+import { StyledLink } from "../styles/linkStyles/StyledLink";
 
 const Footer = () => {
   return (
-    <footer>
-      <FlexColumn>
-        <Typography>SIGN UP FOR UPDATES</Typography>
-        <Typography
+    <FooterSection>
+      <FlexColumn style={{ alignItems: "center" }}>
+        <StyledLink to={"/signup"}>
+          <Typography sx={{ fontSize: "1.4rem" }}>
+            SIGN UP FOR UPDATES
+          </Typography>
+        </StyledLink>
+        <SlimTypography
           sx={{
-            fontSize: "11px",
             fontWeight: "100",
           }}
         >
           Sign up for exclusive early sale access and tailored new arrivals.
-        </Typography>
-        <FlexRow>
+        </SlimTypography>
+        <FlexRow style={{ width: "35%", position: "relative" }}>
           <TextField
-            sx={{ width: "35%", margin: "1rem .5rem 0 0" }}
+            inputProps={{
+              style: { backgroundColor: "white" },
+            }}
+            sx={{
+              width: "100%",
+              margin: "1rem .5rem 0 0",
+            }}
             id="email-address"
             label="Your email address"
             variant="filled"
           />
-          <Typography paddingTop="1.2rem">JOIN</Typography>
+          <Typography
+            sx={{ fontWeight: "bold", position: "absolute", right: "10px" }}
+            paddingTop="1.2rem"
+          >
+            JOIN
+          </Typography>
         </FlexRow>
       </FlexColumn>
       <FlexRow
         className="row-footer-links"
         style={{
-          margin: "5rem 0 5rem 0",
+          marginTop: "5rem",
           alignItems: "flex-start",
-          padding: "0 5rem 0 5rem",
+          paddingLeft: "5rem",
         }}
       >
         <FlexColumn
@@ -82,12 +98,16 @@ const Footer = () => {
             FOLLOW US
           </Typography>
           <FlexRow>
-            <AiFillFacebook style={{ marginRight: "1rem" }} />
-            <SlimTypography>FACEBOOK</SlimTypography>
+            <SlimTypography>
+              <AiFillFacebook style={{ marginRight: "1rem" }} />
+              FACEBOOK
+            </SlimTypography>
           </FlexRow>
           <FlexRow>
-            <FiInstagram style={{ marginRight: ".6rem" }} />
-            <SlimTypography>INSTAGRAM</SlimTypography>
+            <SlimTypography>
+              <FiInstagram style={{ marginRight: ".6rem" }} />
+              INSTAGRAM
+            </SlimTypography>
           </FlexRow>
         </FlexColumn>
         <FlexColumn
@@ -104,8 +124,12 @@ const Footer = () => {
           <SlimTypography>+972597097813</SlimTypography>
         </FlexColumn>
       </FlexRow>
-    </footer>
+    </FooterSection>
   );
 };
 
 export default Footer;
+export const FooterSection = styled.footer`
+  margin-top: 4rem;
+  padding-bottom: 3rem;
+`;
